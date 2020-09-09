@@ -1,24 +1,10 @@
 import React from 'react'
-import { gql } from 'apollo-boost'
-import { useQuery } from '@apollo/react-hooks'
+import { useGetPhotos } from '../../hooks/useGetPhotos'
 
 import { PhotoCard } from '../PhotoCard/index'
 
-const getPhotos = gql`
-  query getPhotos {
-    photos {
-      id
-      categoryId
-      src
-      likes
-      userId
-      liked
-    }
-  }
-`
-
-export const ListOfPhotoCards = () => {
-  const { loading, error, data } = useQuery(getPhotos)
+export const ListOfPhotoCards = ({ categoryId }) => {
+  const { loading, error, data } = useGetPhotos(categoryId)
 
   if (loading) return <p>Loading</p>
   if (error) return <p>Error</p>
