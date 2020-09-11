@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from '@reach/router'
 
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useNearScreen } from '../../hooks/useNearScreen'
@@ -21,15 +22,17 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   return (
     <Article ref={element}>
       {
-        show && (<>
-          <a href={`/?detail=${id}`}>
-            <ImgWrapper>
-              <Img src={src} />
-            </ImgWrapper>
-          </a>
+        show && (
+          <>
+            <Link to={`/detail/${id}`}>
+              <ImgWrapper>
+                <Img src={src} />
+              </ImgWrapper>
+            </Link>
 
-          <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
-        </>)
+            <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
+          </>
+        )
       }
     </Article>
   )
