@@ -28,4 +28,16 @@ export const Link = styled(LinkRouter)`
     text-decoration: none;
     color: #888;
     width: 100%;
+
+    &[aria-current] {
+        color: #000;
+
+        &:after {
+            content: '.';
+            position: absolute;
+            bottom: 8px;
+            font-size: 34px;
+            line-height: 20px;
+        }
+    }
 `
