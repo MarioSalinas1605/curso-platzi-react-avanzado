@@ -4,12 +4,16 @@ import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from '@apollo/react-hooks'
 
 import { App } from './App'
+import Context from './Context'
 
 const client = new ApolloClient({
   uri: 'https://petgram-server-mario.mariosalinas1605.vercel.app/graphql'
 })
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>, document.getElementById('app'))
+  <Context.Provider>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </Context.Provider>
+  , document.getElementById('app'))
