@@ -8,7 +8,7 @@ mutation signup ($input: UserCredentials!) {
 `
 
 export function useRegister () {
-  const [register] = useMutation(REGISTER)
+  const [register, { data, loading, error }] = useMutation(REGISTER)
 
-  return register
+  return { register, data, loading, error }
 }
