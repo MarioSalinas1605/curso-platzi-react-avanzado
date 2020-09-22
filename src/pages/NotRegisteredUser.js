@@ -15,8 +15,22 @@ export const NotRegisteredUser = () => {
       {({ isAuth, activateAuth }) => {
         return (
           <>
-            <UserForm error={errorMsgReg} disabled={loadingReg} onSubmit={register} activateAuth={activateAuth} title='Registrarse' />
-            <UserForm error={errorMsgLog} disabled={loadingLog} onSubmit={login} activateAuth={activateAuth} title='Iniciar sesión' />
+            <UserForm
+              data={dataReg ? dataReg.signup : null}
+              error={errorMsgReg}
+              disabled={loadingReg}
+              onSubmit={register}
+              activateAuth={activateAuth}
+              title='Registrarse'
+            />
+            <UserForm
+              data={dataLog ? dataLog.login : null}
+              error={errorMsgLog}
+              disabled={loadingLog}
+              onSubmit={login}
+              activateAuth={activateAuth}
+              title='Iniciar sesión'
+            />
           </>
         )
       }}

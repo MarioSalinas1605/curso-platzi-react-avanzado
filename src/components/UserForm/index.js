@@ -4,22 +4,32 @@ import React from 'react'
 import { Form, Input, Button, Error } from './styles'
 import { useInputValue } from '../../hooks/useInputValue'
 
-export const UserForm = ({ onSubmit, title, error, disabled, activateAuth }) => {
+export const UserForm = ({ onSubmit, title, error, disabled, activateAuth, data }) => {
   const email = useInputValue('')
   const password = useInputValue('')
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
+
     try {
-      await onSubmit({
+      onSubmit({
         variables: {
           input: {
             email: email.value,
             password: password.value
           }
         }
+      }).then(({ data }) => {
+        let token
+        if (data && data.login) {
+          token = data.login
+        }
+        if (data && data.signup) {
+          token = data.signup
+        }
+        console.log(token)
+        activateAuth(token)
       })
-      activateAuth()
     } catch (error) {
       console.log(error)
     }
