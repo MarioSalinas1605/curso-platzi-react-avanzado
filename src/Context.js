@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 
-const Context = createContext(false)
+export const Context = createContext(false)
 
 const Provider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(() => window.sessionStorage.token)
@@ -9,6 +9,10 @@ const Provider = ({ children }) => {
     activateAuth: token => {
       setIsAuth(true)
       window.sessionStorage.setItem('token', token)
+    },
+    removeAuth: () => {
+      setIsAuth(false)
+      window.sessionStorage.removeItem('token')
     }
   }
 
