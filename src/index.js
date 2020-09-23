@@ -22,7 +22,7 @@ const client = new ApolloClient({
     console.log(error)
     const { response } = error
     console.log(response)
-    if (response && response.errors[0].message === 'you must be logged in to perform this action') {
+    if (response && (response.errors[0].message === 'you must be logged in to perform this action' || response.errors[0].message === 'user does not exist')) {
       window.sessionStorage.removeItem('token')
       window.location.href = '/favs'
     }
