@@ -13,6 +13,10 @@ export function ListOfFavorites () {
 
   const { favs } = data
 
+  if (!favs.lenght) {
+    return <p>Aún no tienes favoritos</p>
+  }
+
   return (
     <Grid>
       {favs.map(fav => <Link key={fav.id} to={`/detail/${fav.id}`}> <Image src={fav.src} /> </Link>)}
