@@ -27,25 +27,10 @@ export const App = () => {
         {!isAuth && <Redirect noThrow from='/favs' to='/login' />}
         {!isAuth && <Redirect noThrow from='/user' to='/login' />}
         {isAuth && <Redirect noThrow from='/login' to='/' />}
+
+        <Favs path='/favs' />
+        <User path='/user' />
       </Router>
-      <Context.Consumer>
-        {
-          ({ isAuth }) =>
-            isAuth
-              ? (
-                <Router>
-                  <Favs path='/favs' />
-                  <User path='/user' />
-                </Router>
-              )
-              : (
-                <Router>
-                  <NotRegisteredUser path='/favs' />
-                  <NotRegisteredUser path='/user' />
-                </Router>
-              )
-        }
-      </Context.Consumer>
       <NavBar />
     </>
   )
